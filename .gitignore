@@ -1,0 +1,7 @@
+.DS_Store
+
+local-config/params.yaml
+generated/
+
+.vscode/
+.idea/
