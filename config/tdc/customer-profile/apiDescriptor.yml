@@ -1,0 +1,32 @@
+apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
+kind: APIDescriptor
+metadata:
+  name: customer-profile
+  annotations:
+    kapp.k14s.io/identity: v1;tdc/carto.run/Workload/customer-profile;carto.run/v1alpha1
+    kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"customer-profile","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1686327868030937008","kapp.k14s.io/association":"v1.93119afc255d57b98ee105f8a2a6b119"},"name":"customer-profile","namespace":"tdc"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"scanning_source_policy","value":"customer-profile-scan-policy"},{"name":"scanning_image_policy","value":"customer-profile-scan-policy"},{"name":"gitops_repository_name","value":"gitops-customer-profile"},{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"Manage customer profiles","location":{"path":"/api-docs"},"owner":"customer-relations-department","system":"profile-management","type":"openapi"}}],"serviceClaims":[{"name":"database","ref":{"apiVersion":"services.apps.tanzu.vmware.com/v1alpha1","kind":"ClassClaim","name":"customer-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/dprocha/customer-profile"}}}}'
+    kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
+    autoscaling.knative.dev/minScale: "1"
+  labels:
+    apis.apps.tanzu.vmware.com/register-api: "true"
+    app.kubernetes.io/part-of: customer-profile
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1686327868030937008"
+    kapp.k14s.io/association: v1.93119afc255d57b98ee105f8a2a6b119
+    app.kubernetes.io/component: run
+    carto.run/workload-name: customer-profile
+spec:
+  type: openapi
+  description: Manage customer profiles
+  system: profile-management
+  owner: customer-relations-department
+  location:
+    path: /api-docs
+    baseURL:
+      ref:
+        apiVersion: serving.knative.dev/v1
+        kind: Service
+        name: customer-profile
+
